@@ -39,3 +39,26 @@ const batch = [
 ];
 
 // Add your functions below:
+const validateCred = (arr) => {
+  // work back from last digit
+  let sum = 0;
+  let otherDouble = false;
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    let num = arr[i];
+
+    // double every other
+    if (otherDouble) {
+      num *= 2;
+      if (num > 9) num -= 9;
+    }
+    sum += num;
+    otherDouble = !otherDouble;
+  }
+
+  // return true if the sum is divisible by 10 - valid
+  return sum % 10 === 0;
+};
+
+console.log(validateCred(valid1)); // returns true
+console.log(validateCred(invalid1)); // returns false
