@@ -62,3 +62,20 @@ const validateCred = (arr) => {
 
 console.log(validateCred(valid1)); // returns true
 console.log(validateCred(invalid1)); // returns false
+
+// find invalid card numbers
+const findInvalidCards = (arr) => {
+  const invalidCards = [];
+  for (let i = 0; i < arr.length; i++) {
+    let valid = validateCred(arr[i]);
+
+    // if caard number isnt valid then add to new array
+    if (valid === false) {
+      invalidCards.push(arr[i]);
+    }
+  }
+
+  return invalidCards;
+};
+
+console.log(findInvalidCards(batch));
