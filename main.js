@@ -60,6 +60,7 @@ const validateCred = (arr) => {
   return sum % 10 === 0;
 };
 
+//test
 console.log(validateCred(valid1)); // returns true
 console.log(validateCred(invalid1)); // returns false
 
@@ -78,4 +79,41 @@ const findInvalidCards = (arr) => {
   return invalidCards;
 };
 
+//test
 console.log(findInvalidCards(batch));
+
+// find which companies sent out invalid cards
+function idInvalidCardCompanies(cards) {
+  let companies = [];
+  for (let i = 0; i < cards.length; i++) {
+    let company = "";
+    if (cards[i][0] === 3) {
+      company = "Amex";
+    } else if (cards[i][0] === 4) {
+      company = "Visa";
+    } else if (cards[i][0] === 5) {
+      company = "Mastercard";
+    } else if (cards[i][0] === 6) {
+      company = "Discover";
+    } else {
+      company = "Company not found";
+    }
+
+    let inArray = false;
+    for (let j = 0; j < companies.length; j++) {
+      if (companies[j] === company) {
+        inArray = true;
+        break;
+      }
+    }
+
+    if (!inArray) {
+      companies.push(company);
+    }
+  }
+  return companies;
+}
+
+// test
+console.log(idInvalidCardCompanies([invalid1]));
+console.log(idInvalidCardCompanies([mystery1]));
